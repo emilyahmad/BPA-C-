@@ -16,28 +16,29 @@ void displayValues(int[], int[], int);
 
 int main()
 {
-    int totalLottery, totalUser; // sums of each array (check matching faster)
     int lottery[SIZE]; // Lottery numbers
     int users[SIZE]; // User's numbers
     // Number of matches
     int num_matches;
     
     // Generate the random lottery numbers.
-    generateNumbers(lottery[], SIZE);
+    generateNumbers(lottery, SIZE);
     // Get the user's numbers.
-    getUser(users[], SIZE);
+    getUser(users, SIZE);
 
     // Get the number of matching numbers.
-    num_matches = findMatches(lottery[], users[], SIZE);
+    num_matches = findMatches(lottery, users, SIZE);
 
     // Display the lottery and user numbers.
-    displayValues(lottery[], users[], SIZE);
+    displayValues(lottery, users, SIZE);
 
     // Display the number of matching numbers.
     cout << "\nNumber of matching values: " << num_matches;
     // Determine whether the user won the grand prize.
     if (num_matches == 5) {
         cout << "\nYou are a grand prize winner! Nice.";
+    } else {
+        cout << "\nYou are not a winner." << endl;
     }
 
     return 0;
@@ -49,15 +50,15 @@ int main()
 // *******************************************************
 void generateNumbers(int a[], int s) {
     for (int i = 0; i < s; i++) {
-        a[i] == rand() % 10;
+        a[i] = rand() % 10;
     }
 }    
 // *******************************************************
 // The getUser function gets the user's lottery picks.   *
 // *******************************************************
-void getUser(int a[], s) {
+void getUser(int a[], int s) {
     for (int i = 0; i < s; i++) {
-        cout << "\nEnter guess " << i+1 << " /9: ";
+        cout << "\nEnter guess " << i+1 << "/5: ";
         cin >> a[i];
     }
 }
@@ -67,7 +68,7 @@ void getUser(int a[], s) {
 // number of matches is returned.                        *
 // *******************************************************
 int findMatches(int a[], int b[], int c) {
-    int matches;
+    int matches = 0;
     for (int i=0; i<c; i++) { // double loop to cross check each element
         for (int j=0; j<c; j++) {
             if (a[i] == b[j]) {
@@ -75,6 +76,7 @@ int findMatches(int a[], int b[], int c) {
             }
         }
     }
+    return matches;
 }
 // *******************************************************
 // The displayValues function displays the values in the *
@@ -87,6 +89,6 @@ void displayValues(int a[], int b[], int c) {
     }
     cout << "\nUser's numbers:";
     for (int j=0; j<c; j++) {
-        cout << " " << b[i];
+        cout << " " << b[j];
     }
 }
