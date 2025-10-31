@@ -28,17 +28,17 @@ int main()
     getUser(users[], SIZE);
 
     // Get the number of matching numbers.
-    for (int i=0; i<SIZE; i++) {
-        for (int j=0; j<SIZE; j++) {
-
-        }
-    }
+    num_matches = findMatches(lottery[], users[], SIZE);
 
     // Display the lottery and user numbers.
+    displayValues(lottery[], users[], SIZE);
 
     // Display the number of matching numbers.
-
+    cout << "\nNumber of matching values: " << num_matches;
     // Determine whether the user won the grand prize.
+    if (num_matches == 5) {
+        cout << "\nYou are a grand prize winner! Nice.";
+    }
 
     return 0;
 }
@@ -66,8 +66,27 @@ void getUser(int a[], s) {
 // user's values that match the lottery numbers. The     *
 // number of matches is returned.                        *
 // *******************************************************
-
+int findMatches(int a[], int b[], int c) {
+    int matches;
+    for (int i=0; i<c; i++) { // double loop to cross check each element
+        for (int j=0; j<c; j++) {
+            if (a[i] == b[j]) {
+                matches++;
+            }
+        }
+    }
+}
 // *******************************************************
 // The displayValues function displays the values in the *
 // lottery array and the user array.                     *
 // *******************************************************
+void displayValues(int a[], int b[], int c) {
+    cout << "\nLottery numbers:";
+    for (int i=0; i<c; i++) {
+        cout << " " << a[i];
+    }
+    cout << "\nUser's numbers:";
+    for (int j=0; j<c; j++) {
+        cout << " " << b[i];
+    }
+}
